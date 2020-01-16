@@ -44,7 +44,7 @@ def test_author_required(app, client, auth):
     '/2/update',
     '/2/delete',
 ))
-def test_exists_required(client, auth, path):
+def test_exists_required(app,client, auth, path):
     auth.login()
     assert client.post(path).status_code == 404
 
