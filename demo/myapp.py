@@ -3,7 +3,7 @@
 # 导入Flask类
 from flask import Flask
 from flask import render_template
-from flask import request,session,flash
+from flask import request,session,flash,g
 from flask import redirect, url_for,escape
 from flask import make_response
 from datetime import timedelta
@@ -39,16 +39,17 @@ def login():
 def doLogin():
     loginName = ""
     password = ""
+    
     if request.method == "GET":
         # get通过request.args.get("param_name","")形式获取参数值
         loginName = request.args.get("loginName","")
         password = request.args.get("password","")
-        
     elif request.method == "POST":
         # post通过request.form["param_name"]形式获取参数值
         loginName = request.form["loginName"]
         password = request.form["password"]
-    result = service.myservice.doLogin(loginName,password)
+        result = service.myservice.doLogin(loginName,password)
+
     if(result):
         session['loginName'] = loginName
         session.permanent = True
@@ -56,7 +57,8 @@ def doLogin():
         return redirect(url_for('index'))
     else:
         flash('用户名密码错误！')
-        return redirect(url_for('login',loginName=(loginName)))
+        return redirect(url_for('login',loginName=loginName))
+
 
 @app.route('/logout')
 def logout():
@@ -82,4 +84,4 @@ def me_api():
 if __name__ == '__main__':
     # app.run(host, port, debug, options)
     # 默认值：host=127.0.0.1, port=5000, debug=false
-    app.run()
+    app.run(debug=True)
