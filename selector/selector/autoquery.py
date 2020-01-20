@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import pymysql
 import requests
-from apscheduler.schedulers.blocking import BlockingScheduler
+#from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime
 
 class DB():
@@ -47,8 +47,10 @@ def myjob():
             #dingding(data)
         
 if __name__ == '__main__':
-    scheduler = BlockingScheduler()
+    #scheduler = BlockingScheduler()
     #scheduler.add_job(myjob, 'cron', day=1, hour=0, minute=0,second=0)
     #scheduler.add_job(myjob, 'cron', hour=17,minute=0,second=0)
-    scheduler.add_job(myjob, 'interval', seconds=5)
-    scheduler.start()
+    #scheduler.add_job(myjob, 'interval', seconds=5)
+    #scheduler.start()
+    myjob()
+
