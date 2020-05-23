@@ -1,0 +1,19 @@
+#!/usr/local/bin/python3
+# -*- coding: UTF-8 -*-
+import functools
+
+def log(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print('call %s():begin' % func.__name__)
+        result = func(*args, **kw)
+        print('call %s():end' % func.__name__)
+        return result
+    return wrapper
+
+@log
+def now():
+    print('hello')
+    return 3
+
+now()

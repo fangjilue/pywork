@@ -44,7 +44,16 @@ def myjob():
         for i in db:
             data["text"]={"content": "报警 查询时间:%s , 系统余额:%s元" % (i['questTime'],i['amount'])}
             print(data)
+            write("%s,%s\n" % (i['questTime'],i['amount']))
             #dingding(data)
+
+def write(str):
+    try:
+        f = open('blance.txt', 'a+')
+        f.write(str)
+    finally:
+        if f:
+            f.close()
         
 if __name__ == '__main__':
     #scheduler = BlockingScheduler()

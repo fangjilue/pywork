@@ -3,7 +3,7 @@
 # 导入Flask类
 from flask import Flask
 from flask import render_template
-from flask import request,session,flash,g
+from flask import request,session,flash,g,jsonify
 from flask import redirect, url_for,escape
 from flask import make_response
 from datetime import timedelta
@@ -69,7 +69,9 @@ def logout():
 @app.errorhandler(404)
 def not_found(error):
     app.logger.error(error)
-    return render_template('404.html'), 404
+    if request.path.startswith('/api/'):
+        return jsonify(error=str(error)),200
+    return render_template('404.html'), 200
 
 @app.route("/me")
 def me_api():
