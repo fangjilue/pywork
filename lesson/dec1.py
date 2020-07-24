@@ -5,7 +5,7 @@ def f1():
 
 # 在不修改原函数的情况下，增加打印时间戳
 def print_current_time(func):
-    print(time.time())
+    print(time.time()*1000)
     func()
 
 print_current_time(f1)

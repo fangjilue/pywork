@@ -3,6 +3,7 @@
 import tools
 import time
 import calendar
+import datetime
 
 cal = calendar.month(2016, 1)
 print ("以下输出2016年1月份的日历:")
@@ -22,3 +23,11 @@ print (time.strftime("%a %b %d %H:%M:%S %Y", time.localtime()))
 # 将格式字符串转换为时间戳
 a = "Sat Mar 28 22:24:24 2016"
 print (time.mktime(time.strptime(a,"%a %b %d %H:%M:%S %Y")))
+
+print(time.strftime("%Y-%m-%d", time.localtime()))
+
+now = datetime.datetime.now()
+date = now + datetime.timedelta(days = 1)
+print(datetime.timedelta(days = 1))
+
+print(now.strftime('%Y-%m-%d'), ' ~ ', date.strftime('%Y-%m-%d')) 
