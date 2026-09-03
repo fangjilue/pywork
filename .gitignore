@@ -14,3 +14,9 @@ build/
 
 .idea/
 selector/
+python/
+yxr/
+mogo/
+pdf/
+job/
+*.zip
